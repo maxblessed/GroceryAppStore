@@ -1,0 +1,73 @@
+﻿@model GroceryStoresApp.ViewModels.StoreCustViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form asp-action="Create" enctype='multipart/form-data'>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group">
+        
+             
+                
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="@Model.categories" class="control-label"></label>
+                 <select asp-for="@Model.stores.category" class="form-control" id="sel1">
+                  @foreach (var item in @Model.categories )
+   
+                       {
+                        
+                         <option asp-for="@item.Name">@item.Name</option>
+                    <span asp-validation-for="@item.Name" class="text-danger"></span>
+                       }
+               </select>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="@Model.stores.title" class="control-label"></label>
+                <input asp-for="@Model.stores.title" class="form-control" />
+                <span asp-validation-for="@Model.stores.title" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="@Model.stores.name" class="control-label"></label>
+                <input asp-for="@Model.stores.name" class="form-control" />
+                <span asp-validation-for="@Model.stores.name" class="text-danger"></span>
+            </div>
+             <div class="form-group my-2">
+                <label asp-for="@Model.stores.price" class="control-label"></label>
+                <input asp-for="@Model.stores.price" class="form-control" />
+                <span asp-validation-for="@Model.stores.price" class="text-danger"></span>
+            </div>
+            
+               
+
+                <div class="custom-file my-2">
+    <input asp-for="@Model.stores.img" class="custom-file-input" id="customFile">
+    <label class="custom-file-label" asp-for="@Model.stores.img">Choose file</label>
+     <span asp-validation-for="@Model.stores.img" class="text-danger"></span>
+  </div>
+
+                
+               
+            
+            <div class="form-group  my-2">
+           <label asp-for="@Model.stores.content" class="control-label"></label>
+            <textarea asp-for="@Model.stores.content" class="form-control" rows="5" id="comment"></textarea>
+             <span asp-validation-for="@Model.stores.content" class="text-danger"></span>
+             </div>
+             
+            <div class="form-group mt-2">
+                <input type="submit" value="Create" class="btn btn-primary px-5 my-3" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

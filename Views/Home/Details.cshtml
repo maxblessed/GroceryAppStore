@@ -1,0 +1,66 @@
+﻿@model GroceryStoresApp.Models.StoresModel.Store
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h6 class="text-success my-3"> @Html.DisplayNameFor(model => model.category) &#x2192; @Html.DisplayFor(model => model.title)</h6>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.category)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.imgname)
+        </dt>
+         @{
+                        string ite="";
+                        int parameterValue = @Model.imgname.IndexOf("wwwroot");
+                        if (parameterValue!=-1)
+                        {
+                              ite = @Model.imgname.Substring(48);
+                        }
+                       
+                    }
+        
+        <dd class = "col-sm-10">
+            <img src="~/@ite" height="300px" width="300px" />
+        </dd>
+    </dl>
+</div>
+<div class="my-5 pb-4 btn btn-outline-success col-2 text-light">
+  
+        @Html.ActionLink("Add To Cart","AddToShoppingCart","ShoppingCartItems",new {id=@Model.id} ) 
+         
+</div>
+ <a asp-action="Index" class="text-dark">Back to Home</a>

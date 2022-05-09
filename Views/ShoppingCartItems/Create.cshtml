@@ -1,0 +1,48 @@
+﻿
+@using GroceryStoresApp.ViewModels
+@model ShoppingCartViewModelcs
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h6>Your shopping cart</h6>
+<h6>Here are the Exciting Books in your shopping cart.</h6>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+
+            <th class="text-center">Movie</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-right">Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+        {
+        <tr>
+            <td class="text-center">@line.store.title</td>
+            <td class="text-center">@line.store.price.ToString("c")</td>
+            <td class="text-center">@line.NoOfItems</td>
+            <td class="text-right">
+                @((line.NoOfItems * line.store.price).ToString("c"))
+            </td>
+            <td class="text-center">
+                        <a class="btn btn-outline-danger"
+                           asp-controller="ShoppingCartItems"
+                           asp-action="RemoveFromShoppingCart"
+                           asp-route-Id="@line.store.id">Remove from Cart</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right font-weight-bold">
+                @Model.ShoppingCartTotal.ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>

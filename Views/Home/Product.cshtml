@@ -1,0 +1,31 @@
+﻿@model IEnumerable<GroceryStoresApp.Models.StoresModel.Store>
+<div class="container">
+    <h5 class="text-success my-3">All Product</h5>
+	<div class="row">
+		@foreach (var item in Model)
+		{
+			<div class="col-md-3">
+                <a class="text-success d-block" asp-action="Details" asp-route-id="@item.id">
+				 @{
+                        string ite="";
+                        int parameterValue = item.imgname.IndexOf("wwwroot");
+                        if (parameterValue!=-1)
+                        {
+                              ite = item.imgname.Substring(48);
+                        }
+                       
+                    }
+                
+                <img src="~/@ite" height="200px" width="200px" />
+                <h6>
+                     @Html.DisplayFor(modelItem => item.title)
+                </h6>
+                <h6>
+                    &euro; @Html.DisplayFor(modelItem => item.price)
+                </h6>
+                  </a> 
+			</div>
+          
+		}
+	</div>
+</div>
